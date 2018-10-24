@@ -57,4 +57,4 @@ document.addEventListener("keyup", event => {
     }
 });
 
-setInterval(function(){ saveGame; }, 1000);
+setInterval(function(){ saveGame(); }, 1000);
