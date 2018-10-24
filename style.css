@@ -16,3 +16,28 @@ h1, h2 {
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
 }
+
+.speed-bar-container {
+    margin: 20px;
+    width: 495px;
+    height: 20px;
+    border: 5px solid black;
+    border-radius: 5px;
+}
+
+.speed-bar {
+    height: 100%;
+    width: 20%;
+    background-color: greenyellow;
+    animation: animate-width 10s linear infinite;
+}
+
+@keyframes animate-width {
+    from {
+        width: 0%;
+    }
+
+    to {
+        width: 100%;
+    }
+}
