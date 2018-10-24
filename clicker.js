@@ -34,29 +34,39 @@ score.innerText = clicks;
 const cookie_speed = getCookie("speed");
 let top_diff = cookie_speed === '' ? 0 : Number.parseInt(cookie_speed, 10);
 speed.innerText = top_diff;
-let last_clicks = clicks;
+// let last_clicks = clicks;
+let speedClicks = 0;
 
 function saveGame() {
     setCookie("clicks", clicks, 420);
     setCookie("speed", top_diff, 420);
 }
 
+// function calcSpeed() {
+//     // console.log("lastclicks: " + last_clicks);
+//     if (last_clicks) {
+//         let diff = clicks - last_clicks;
+//         // console.log("diff: " + diff + " best: " + top_diff);
+//         if (diff > top_diff) {
+//             top_diff = diff;
+//             speed.innerText = top_diff;
+//             // console.log("new highscore")
+//         }
+//     }
+//     last_clicks = clicks;
+// }
+
 function calcSpeed() {
-    // console.log("lastclicks: " + last_clicks);
-    if (last_clicks) {
-        let diff = clicks - last_clicks;
-        // console.log("diff: " + diff + " best: " + top_diff);
-        if (diff > top_diff) {
-            top_diff = diff;
-            speed.innerText = top_diff;
-            // console.log("new highscore")
-        }
+    if (speedClicks > top_diff) {
+        top_diff = speedClicks;
+        speed.innerText = top_diff;
     }
-    last_clicks = clicks;
+    speedClicks = 0;
 }
 
 function gameTick() {
-    console.log("gametick");
+    // console.log("gametick");
+    main.innerText = 0;
     calcSpeed();
     saveGame();
 }
@@ -72,7 +82,9 @@ function getRandomColor() {
 
 function clickSquare() {
     clicks += 1;
+    speedClicks += 1;
     score.innerText = clicks;
+    main.innerText = speedClicks;
     main.style.backgroundColor = getRandomColor();
 }
 
