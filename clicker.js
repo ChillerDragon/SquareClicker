@@ -57,4 +57,4 @@ document.addEventListener("keyup", event => {
     }
 });
 
-setTimeout(function(){ saveGame(); }, 1000);
+setTimeout(function(){ saveGame(); }, 100);
