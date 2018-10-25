@@ -95,4 +95,23 @@ document.addEventListener("keyup", event => {
     }
 });
 
-setInterval(function(){ gameTick(); }, 10000);
+// old inaccurate way
+// setInterval(function(){ gameTick(); }, 10000);
+
+// new accurate way
+// https://stackoverflow.com/questions/29971898/how-to-create-an-accurate-timer-in-javascript
+let interval = 10000; // 10s in ms
+let expected = Date.now() + interval;
+setTimeout(step, interval);
+function step() {
+    var dt = Date.now() - expected; // the drift (positive for overshooting)
+    if (dt > interval) {
+        // something really bad happened. Maybe the browser (tab) was inactive?
+        // possibly special handling to avoid futile "catch up" run
+    }
+    
+    gameTick();
+
+    expected += interval;
+    setTimeout(step, Math.max(0, interval - dt)); // take into account drift
+}
